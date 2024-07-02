@@ -8,7 +8,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from rest_framework.authtoken.models import Token
 
 #for sending mail
@@ -69,6 +69,13 @@ class UserLoginApiView(APIView):
 
             if user is not None:
                 token, _ = Token.objects.get_or_create(user=user)
+                login(request, user)
                 return Response({'token': token.key, 'user_id': user.id})
 
         return Response({'error': 'Invalid credentials'})
+
+class UserLogoutApiView(APIView):
+    def get(self, request):
+        request.user.auth_token.delete()
+        logout(request)
+        return Response({'message': 'Logged out successfully'})
