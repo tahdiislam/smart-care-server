@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'contact_us',
     'appointment',
     'rest_framework',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
