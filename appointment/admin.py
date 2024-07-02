@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 # Register your models here.
 class AppointmentAdmin(admin.ModelAdmin):
-    list_display = ('doctor_name', 'patient_name', 'time')
+    list_display = ('patient_name', 'doctor_name', 'time')
 
     def doctor_name(self, obj):
         return obj.doctor.user.first_name + " " + obj.doctor.user.last_name
