@@ -5,10 +5,11 @@ class DoctorSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField(many=False)
     specialization = serializers.StringRelatedField(many=True)
     designation = serializers.StringRelatedField(many=True)
-    available_time = serializers.HyperlinkedRelatedField(
-        many=True,
-        read_only=True,
-        view_name='availabletime-detail')
+    # available_time = serializers.HyperlinkedRelatedField(
+    #     many=True,
+    #     read_only=True,
+    #     view_name='availabletime-detail')
+    available_time = serializers.StringRelatedField(many=True)
     class Meta:
         model = Doctor
         fields = '__all__'

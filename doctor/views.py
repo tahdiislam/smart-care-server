@@ -14,6 +14,8 @@ class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
     pagination_class = DoctorPagination
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['specialization__name', 'designation__name', 'user__username']
 
 class SpecializationViewSet(viewsets.ModelViewSet):
     queryset = Specialization.objects.all()
